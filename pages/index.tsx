@@ -1,8 +1,16 @@
-import { Container, Text } from "@chakra-ui/react";
+import {
+  Container,
+  Text,
+  useColorMode,
+  Button,
+  Flex,
+  Box,
+} from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 
 const Home: NextPage = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <div>
       <Head>
@@ -11,10 +19,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container maxW={"7xl"}>
-        <Text className="text-red-500" as={"h1"} fontSize={"2xl"}>
-          NextJS Typescript + Chakra UI + Tailwind
-        </Text>
+      <Container maxW={"7xl"} my={"6"}>
+        <Flex justifyContent="flex-end">
+          <Button onClick={toggleColorMode}>
+            Toggle {colorMode === "light" ? "Dark" : "Light"}
+          </Button>
+        </Flex>
+        <Box className="text-center">
+          <Text className="text-red-500" as={"h1"} fontSize={"2xl"}>
+            NextJS Typescript + Chakra UI + Tailwind
+          </Text>
+          <div className="dark:text-yellow-400">
+            Tailwind is working, but Chakra UI is not working. I want to use
+          </div>
+        </Box>
       </Container>
     </div>
   );
